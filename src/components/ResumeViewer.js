@@ -24,7 +24,7 @@ export default function ResumeViewer() {
           {expanded ? 'Collapse' : 'Preview Resume'}
         </button>
         <a
-          href="/resume.pdf"
+          href="/RiyaResumeM.pdf"
           download
           style={{
             fontFamily: 'var(--mono)', fontSize: 12,
@@ -44,7 +44,7 @@ export default function ResumeViewer() {
           overflow: 'hidden', background: 'var(--surface)',
         }}>
           <iframe
-            src="/resume.pdf"
+            src="/RiyaResumeM.pdf"
             title="Riya Mehta Resume"
             style={{ width: '100%', height: 700, border: 'none', display: 'block' }}
           />

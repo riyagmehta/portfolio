@@ -14,8 +14,7 @@ export const personal = {
 
 export const stats = [
   { num: "4.0", label: "MS GPA, UIC" },
-  { num: "35%", label: "Search latency reduced" },
-  { num: "10+", label: "Enterprise AI deployments" },
+  { num: "10+", label: "Enterprise deployments" },
   { num: "2026", label: "MS Computer Science" },
 ];
 
@@ -34,7 +33,7 @@ export const skills = [
   },
   {
     title: "AI & Agents",
-    tags: ["LangChain", "OpenAI API", "Anthropic API", "RAG Pipelines", "Pinecone", "Prompt Engineering", "MCP"],
+    tags: ["LangChain", "RAG Pipelines", "Pinecone", "Prompt Engineering", "MCP"],
   },
   {
     title: "Databases",
@@ -42,7 +41,7 @@ export const skills = [
   },
   {
     title: "DevOps & Tools",
-    tags: ["Docker", "AWS EC2/S3", "GitHub Actions", "CI/CD", "Jest", "Playwright", "Vercel", "Streamlit"],
+    tags: ["Docker", "AWS" , "Jest", "Playwright", "Vercel", "Streamlit"],
   },
 ];
 
@@ -50,7 +49,7 @@ export const experience = [
   {
     role: "AI Solution Engineering Intern",
     company: "Pramata",
-    location: "Remote",
+    location: "USA, Remote",
     dates: "Jun 2026 – Present",
     bullets: [
       "Architect and deploy Claude-powered autonomous agent pipelines for enterprise legal and contract intelligence workflows, optimizing multi-turn reasoning chains and tool-use patterns across 10+ Fortune 500 customer deployments.",
@@ -72,7 +71,7 @@ export const experience = [
   {
     role: "Software Engineering Intern",
     company: "Oasis Infobyte",
-    location: "Remote",
+    location: "India, Remote",
     dates: "Jul 2023 – Aug 2023",
     bullets: [
       "Built a distributed food delivery platform with a decoupled service architecture: a stateless Node.js/Express API layer handling order lifecycle state machines, a React SPA with Redux for optimistic UI updates and cart state hydration, and a WebSocket pub/sub layer synchronizing real-time order transitions across customer, restaurant, and delivery driver surfaces.",
@@ -88,22 +87,22 @@ export const projects = [
     icon: "🧠",
     link: "https://github.com/riyagmehta",
     tags: ["Mar 2026"],
-    desc: "Multi-stage agentic pipeline where the LLM autonomously analyzes onboarding signals to generate a structured course outline, drives streamed content delivery via Server-Sent Events with difficulty calibration across sessions, and resolves learner questions through a RAG layer backed by Pinecone vector embeddings and Redis caching. Engineered a chunk-boundary-aware SSE parser that buffers incomplete JSON fragments and retries malformed segments at the backend before they reach the client — a failure class only surfaced under concurrent real-user load.",
+    desc: "Multi-stage agentic pipeline where the LLM autonomously analyzes onboarding signals to generate a structured course outline, drives streamed content delivery via Server-Sent Events with difficulty calibration across sessions, and resolves learner questions through a RAG layer backed by Pinecone vector embeddings and Redis caching. Engineered a chunk-boundary-aware SSE parser that buffers incomplete JSON fragments and retries malformed segments at the backend before they reach the client, a failure class only surfaced under concurrent real-user load.",
     stack: ["React", "FastAPI", "PostgreSQL", "Redis", "OpenAI API", "Pinecone", "SSE", "LangChain"],
   },
   {
     name: "Sweet Home Finder",
     icon: "🐾",
     link: "https://github.com/riyagmehta/Shelter-Home",
-    tags: ["Live"],
+    tags: ["Dec 2024"],
     desc: "Full-stack pet adoption platform with a React/Node.js/PostgreSQL architecture and bidirectional real-time communication via Socket.IO. Built a compatibility scoring engine that evaluates personality quiz responses against a weighted shelter inventory index to surface ranked matches per adopter profile. Designed complex relational schemas across users, shelters, pets, and adoption applications with Sequelize ORM, implemented JWT auth with RBAC middleware separating shelter-admin and adopter access surfaces, and built a stateful real-time chat system with persisted message history and unread notification tracking.",
-    stack: ["React", "Node.js", "PostgreSQL", "Sequelize", "Socket.IO", "JWT", "Chakra UI", "Vercel"],
+    stack: ["React", "Node.js", "PostgreSQL", "Sequelize", "Socket.IO", "JWT", "Chakra UI"],
   },
   {
     name: "Chicago Energy Performance Navigator",
     icon: "⚡",
     link: "https://github.com/riyagmehta/Energy-performance-navigator",
-    tags: ["ML"],
+    tags: ["Jul 2025"],
     desc: "Data science platform analyzing Chicago's Energy Benchmarking dataset across 4,000+ buildings. Designed an ensemble ML pipeline combining ENERGY STAR score regression, k-means clustering for efficiency archetype discovery, and a gradient-boosted classifier for tier prediction, on top of a feature engineering layer encoding building age, source energy intensity, GHG emissions, and geographic cluster signals. Exposed findings through a Streamlit dashboard with interactive building explorer, choropleth neighborhood maps, and a rule-based recommendation engine generating tailored efficiency pathways per archetype.",
     stack: ["Python", "scikit-learn", "XGBoost", "Pandas", "Streamlit", "Plotly", "GeoPandas"],
   },
@@ -121,7 +120,7 @@ export const projects = [
     link: "https://github.com/riyagmehta",
     tags: ["May 2023"],
     desc: "Campus peer-to-peer marketplace using a hybrid rendering strategy: ISR for listing pages with 60-second revalidation windows, SSR for search and filter routes to guarantee freshness on every request, and static generation for category landing pages. MongoDB aggregation pipelines power faceted multi-attribute filtering with compound indexes tuned for listing cardinality and sort performance. Scaled to 500+ concurrent active listings with sub-100ms filter response times.",
-    stack: ["Next.js", "MongoDB", "Tailwind CSS", "Vercel", "ISR", "SSR"],
+    stack: ["Next.js", "MongoDB", "Tailwind CSS"],
   },
 ];
 

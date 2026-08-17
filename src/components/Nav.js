@@ -23,7 +23,7 @@ const s = {
 };
 
 export default function Nav() {
-  const links = ['About', 'Skills', 'Experience', 'Projects', 'Resume', 'Contact'];
+  const links = ['About', 'Skills', 'Experience', 'Projects','Education', 'Resume', 'Contact'];
   return (
     <nav style={s.nav}>
       <div style={s.logo}>riya.mehta</div>

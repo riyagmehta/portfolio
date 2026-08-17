@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MatrixCanvas from './components/MatrixCanvas';
 import CommandPalette from './components/CommandPalette';
-
+import Education from './components/Education';
 export default function App() {
   return (
     <div style={{ position: 'relative', zIndex: 1 }}>
@@ -20,6 +20,7 @@ export default function App() {
         <Skills />
         <Experience />
         <Projects />
+        <Education />
         <ResumeViewer />
         <Contact />
         <Footer />

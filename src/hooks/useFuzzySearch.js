@@ -31,9 +31,10 @@ export function searchAll(query, { skills, projects, experience }) {
     }
   });
   const actions = [
-    { label: 'Contact', target: 'contact' },
     { label: 'About', target: 'about' },
+    { label: 'Education', target: 'education' },
     { label: 'Resume', target: 'resume' },
+    { label: 'Contact', target: 'contact' },
   ];
   actions.forEach(a => {
     if (fuzzyMatch(query, a.label)) {

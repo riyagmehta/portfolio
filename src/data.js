@@ -4,123 +4,148 @@
 
 export const personal = {
   name: "Riya Mehta",
-  title: "Software Engineer",
+  location: "Chicago, IL",
+  title: "Full-stack + AI Engineer",
+  tagline: "Balanced full-stack + AI engineer. Builds systems that don't silently break.",
   email: "mriya842@gmail.com",
   phone: "(312) 358-8464",
   github: "https://github.com/riyagmehta",
-  linkedin: "https://linkedin.com/in/riya-mehta-515595200",
-  bio: "I build distributed systems, full-stack web applications, and production AI pipelines. My work spans backend service architecture, real-time data transport, vector retrieval systems, and agentic LLM orchestration. I care about systems that fail gracefully, codebases that are easier to work in after I leave them, and closing the gap between what a model can do in isolation and what it takes to make it reliable under real load.",
+  githubHandle: "github.com/riyagmehta",
+  linkedin: "https://linkedin.com/in/riya-mehta",
+  linkedinHandle: "linkedin.com/in/riya-mehta",
 };
 
-export const stats = [
-  { num: "4.0", label: "MS GPA, UIC" },
-  { num: "10+", label: "Enterprise deployments" },
-  { num: "2026", label: "MS Computer Science" },
+export const bootLines = [
+  { cmd: "whoami" },
+  { out: "Riya Mehta — full-stack + AI engineer" },
+  { out: "Chicago, IL · MS CS @ UIC" },
+  { cmd: "cat status.txt" },
+  { out: "> currently: AI Solution Engineer Intern @ Pramata" },
+  { out: "> balanced full-stack + AI engineer" },
+  { out: "> builds systems that don't silently break" },
 ];
 
 export const skills = [
   {
     title: "Languages",
-    tags: ["TypeScript", "Python", "JavaScript", "Java", "SQL"],
+    tags: ["Python", "TypeScript", "JavaScript", "Java", "SQL"],
   },
   {
     title: "Frontend",
-    tags: ["React", "Next.js", "Tailwind CSS", "Redux", "SSE", "WebSocket", "Chakra UI"],
+    tags: ["React", "Next.js"],
   },
   {
     title: "Backend",
-    tags: ["Node.js", "FastAPI", "Express.js", "Spring Boot", "REST APIs", "CQRS", "Socket.IO"],
+    tags: ["Node.js", "Express", "Spring Boot", "FastAPI"],
   },
   {
-    title: "AI & Agents",
-    tags: ["LangChain", "RAG Pipelines", "Pinecone", "Prompt Engineering", "MCP"],
+    title: "AI / ML",
+    tags: ["LLMs", "RAG", "AI Agents", "Pinecone", "Claude Code"],
   },
   {
-    title: "Databases",
-    tags: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "SQLite", "Sequelize ORM"],
-  },
-  {
-    title: "DevOps & Tools",
-    tags: ["Docker", "AWS" , "Jest", "Playwright", "Vercel", "Streamlit"],
+    title: "Data & Infra",
+    tags: ["PostgreSQL", "MongoDB", "Redis", "Docker"],
   },
 ];
 
 export const experience = [
   {
-    role: "AI Solution Engineering Intern",
+    id: "exp-pramata",
+    role: "AI Solution Engineer Intern",
     company: "Pramata",
-    location: "USA, Remote",
-    dates: "Jun 2026 – Present",
+    location: "Remote",
+    dates: "Jul 2026 – Present",
     bullets: [
-      "Architect and deploy Claude-powered autonomous agent pipelines for enterprise legal and contract intelligence workflows, optimizing multi-turn reasoning chains and tool-use patterns across 10+ Fortune 500 customer deployments.",
-      "Engineered a structured prompt library system using XML-schema-driven templates and few-shot calibration, reducing agent hallucination rates on domain-specific legal entity extraction tasks and enabling reusable automation across customer engagements.",
-      "Built real-time ROI analytics dashboards aggregating agent performance telemetry, processing throughput, and accuracy signals, enabling the Solutions team to demonstrate quantifiable value to enterprise stakeholders.",
+      "Building AI agents and agentic workflows that bring structure to enterprise contract intelligence — extraction, reasoning, summarization, and structured data generation across complex legal documents for Fortune 500 clients.",
+      "Designed and integrated plugins/tools for MCP servers, giving agents controlled access to external tools, data sources, and services rather than relying on hardcoded integrations.",
+      "Works across multiple LLM models day-to-day, owning the full loop: prompt design, tool-calling workflows, retrieval and context management, structured outputs, and evaluating model performance and reliability against real enterprise requirements.",
+      "Regularly sits with customer-facing teams to translate ambiguous, high-stakes requirements into production-oriented AI solutions — then iterates on agent behavior and workflow reliability post-launch rather than treating a working demo as finished.",
+      "Debugs failures at every layer of the pipeline: retrieval misses, lost context, malformed tool calls, and inconsistent structured outputs.",
     ],
+    annotations: ["MCP servers & tool plugins", "Multi-model LLM workflows", "Fortune 500 contract AI", "Prompt design → eval loop"],
   },
   {
+    id: "exp-fuzzycloud",
     role: "Software Developer Intern",
     company: "Fuzzy Cloud",
     location: "Ahmedabad, India",
-    dates: "Dec 2023 – Jul 2024",
+    dates: "Dec 2023 – Aug 2024",
     bullets: [
-      "Contributed to a HIPAA-aligned cross-platform healthcare SaaS on a React/Next.js frontend integrated with a Rust/Actix backend via REST APIs, operating under CQRS/event sourcing architecture for auditability and eventual consistency.",
-      "Led end-to-end design and implementation of a MeiliSearch-based semantic search layer with fuzzy matching, debounced query batching, and IndexedDB offline caching, reducing p95 search latency by 35% and enabling full offline functionality on mobile.",
-      "Diagnosed a silent query failure in a live healthcare system caused by unescaped Unicode characters corrupting the search index. Traced root cause through structured log analysis, shipped a sanitization middleware fix with regression tests the same day.",
+      "Contributed to a live healthcare client platform — not a sandbox project — building a secure, cross-platform management system across React, Chakra UI, and Next.js on the frontend, backed by a Rust/Actix/SQLite backend.",
+      "Worked across the full stack: frontend components, API contracts, and data layer, collaborating closely with backend engineers to keep contracts consistent across the Rust/React boundary.",
+      "Led the MeiliSearch implementation (fuzzy matching + debounced retrieval) that cut search response times by 35% while improving SEO.",
+      "Built offline-first functionality via IndexedDB and worked with CQRS/event-sourcing patterns to keep the system consistent even with unreliable connectivity — a non-negotiable requirement for a healthcare product.",
+      "Validated reliability and compliance requirements with Postman and Playwright test coverage, catching integration issues before they reached the client's production environment.",
     ],
+    annotations: ["Rust/Actix + React/Next.js", "MeiliSearch: −35% search latency", "Offline-first via IndexedDB", "CQRS / event sourcing"],
   },
   {
-    role: "Software Engineering Intern",
+    id: "exp-oasis",
+    role: "Web Development Intern",
     company: "Oasis Infobyte",
-    location: "India, Remote",
+    location: "Remote",
     dates: "Jul 2023 – Aug 2023",
     bullets: [
-      "Built a distributed food delivery platform with a decoupled service architecture: a stateless Node.js/Express API layer handling order lifecycle state machines, a React SPA with Redux for optimistic UI updates and cart state hydration, and a WebSocket pub/sub layer synchronizing real-time order transitions across customer, restaurant, and delivery driver surfaces.",
-      "Implemented JWT stateless authentication with refresh token rotation, RBAC middleware for route-level permission enforcement, and bcrypt password hashing. Containerized all services via Docker Compose and deployed to AWS EC2 with a GitHub Actions CI/CD pipeline triggering rolling deployments on merge to main.",
-      "Designed the MongoDB schema for order lifecycle management, modelling state transitions as immutable event logs to enable auditability, analytics queries, and retry-safe idempotent operations on delivery confirmation webhooks.",
+      "Built and deployed project-based web applications with scalable, component-driven frontend architecture designed to be extended rather than rewritten.",
+      "Implemented dynamic application features while actively profiling and optimizing performance through debugging and refactoring.",
+      "Maintained structured, documented development workflows — clear commit hygiene and modular code organization — so the codebase stayed maintainable as features were added under a compressed timeline.",
     ],
+    annotations: ["Component-driven frontend", "Performance profiling", "Commit hygiene & docs"],
   },
 ];
 
 export const projects = [
   {
-    name: "AI Adaptive Course Generation Platform",
-    icon: "🧠",
-    link: "https://github.com/riyagmehta",
-    tags: ["Mar 2026"],
-    desc: "Multi-stage agentic pipeline where the LLM autonomously analyzes onboarding signals to generate a structured course outline, drives streamed content delivery via Server-Sent Events with difficulty calibration across sessions, and resolves learner questions through a RAG layer backed by Pinecone vector embeddings and Redis caching. Engineered a chunk-boundary-aware SSE parser that buffers incomplete JSON fragments and retries malformed segments at the backend before they reach the client, a failure class only surfaced under concurrent real-user load.",
-    stack: ["React", "FastAPI", "PostgreSQL", "Redis", "OpenAI API", "Pinecone", "SSE", "LangChain"],
+    id: "proj-course",
+    slug: "course-platform",
+    name: "AI-Powered Adaptive Course Generation Platform",
+    status: "in progress",
+    desc: "Full-stack e-learning platform generating personalized courses from a user's goals and skill level, using a multi-stage LLM pipeline — onboarding, structured outline synthesis, real-time content generation via Server-Sent Events — with difficulty auto-calibrating from quiz performance. RAG-based Q&A layer: paragraph-aware chunking, OpenAI embeddings upserted to Pinecone with per-module namespaces, Redis caching to skip redundant LLM/vector-search calls, grounded answers that decline out-of-scope questions. Async backend with SQLAlchemy 2.0 + asyncpg, Alembic migrations, JWT auth, integration tests against live Postgres/Redis/Pinecone.",
+    stack: ["FastAPI", "React", "PostgreSQL", "Redis", "OpenAI API", "Pinecone", "SSE"],
+    link: null,
+    annotations: ["FastAPI + React + Postgres", "RAG: Pinecone + OpenAI embeddings", "SSE streaming content gen", "status: in progress"],
   },
   {
+    id: "proj-food",
+    slug: "food-donation",
+    name: "Intelligent Food Donation & Waste Allocation Platform",
+    status: null,
+    desc: "Full coordination system connecting donors, collection centers, and staff to cut food waste through real-time tracking and smart allocation. AI-generated donation descriptions, handling guidance, and personalized thank-yous augment the human workflow.",
+    stack: ["Spring Boot", "React", "PostgreSQL", "Gemini AI"],
+    link: null,
+    annotations: ["Spring Boot + React", "Gemini AI-generated content", "Real-time allocation tracking"],
+  },
+  {
+    id: "proj-shelter",
+    slug: "sweet-home-finder",
     name: "Sweet Home Finder",
-    icon: "🐾",
-    link: "https://github.com/riyagmehta/Shelter-Home",
-    tags: ["Dec 2024"],
-    desc: "Full-stack pet adoption platform with a React/Node.js/PostgreSQL architecture and bidirectional real-time communication via Socket.IO. Built a compatibility scoring engine that evaluates personality quiz responses against a weighted shelter inventory index to surface ranked matches per adopter profile. Designed complex relational schemas across users, shelters, pets, and adoption applications with Sequelize ORM, implemented JWT auth with RBAC middleware separating shelter-admin and adopter access surfaces, and built a stateful real-time chat system with persisted message history and unread notification tracking.",
-    stack: ["React", "Node.js", "PostgreSQL", "Sequelize", "Socket.IO", "JWT", "Chakra UI"],
+    status: "live",
+    desc: "Pet-adoption platform with a preference-based matching quiz pairing adopters with pets, plus real-time chat between adopters and shelters — a live two-sided marketplace, not a static directory.",
+    stack: ["React", "Node.js", "PostgreSQL", "Socket.IO"],
+    link: "https://shelter-homee.vercel.app",
+    linkLabel: "shelter-homee.vercel.app",
+    annotations: ["Socket.IO real-time chat", "Preference-based matching quiz", "live: shelter-homee.vercel.app"],
   },
   {
+    id: "proj-handmedown",
+    slug: "hand-me-down",
+    name: "Hand-Me-Down",
+    status: "live",
+    desc: "Peer-to-peer marketplace for college students to buy, sell, and resell items to incoming students, turning seasonal dorm/textbook churn into a closed-loop campus resale economy. Fast, low-friction listing flow designed for move-out week.",
+    stack: ["Next.js", "Tailwind"],
+    link: "https://hand-me-down-chi.vercel.app",
+    linkLabel: "hand-me-down-chi.vercel.app",
+    annotations: ["Next.js + Tailwind", "P2P campus resale", "live: hand-me-down-chi.vercel.app"],
+  },
+  {
+    id: "proj-energy",
+    slug: "energy-navigator",
     name: "Chicago Energy Performance Navigator",
-    icon: "⚡",
-    link: "https://github.com/riyagmehta/Energy-performance-navigator",
-    tags: ["Jul 2025"],
-    desc: "Data science platform analyzing Chicago's Energy Benchmarking dataset across 4,000+ buildings. Designed an ensemble ML pipeline combining ENERGY STAR score regression, k-means clustering for efficiency archetype discovery, and a gradient-boosted classifier for tier prediction, on top of a feature engineering layer encoding building age, source energy intensity, GHG emissions, and geographic cluster signals. Exposed findings through a Streamlit dashboard with interactive building explorer, choropleth neighborhood maps, and a rule-based recommendation engine generating tailored efficiency pathways per archetype.",
-    stack: ["Python", "scikit-learn", "XGBoost", "Pandas", "Streamlit", "Plotly", "GeoPandas"],
-  },
-  {
-    name: "Intelligent Food Donation System",
-    icon: "🍱",
-    link: "https://github.com/riyagmehta",
-    tags: ["Sep 2025"],
-    desc: "Event-driven logistics platform built on Spring Boot with async message queues for donation ingestion, real-time notification dispatch, and LLM-powered donor-to-center matching. The matching agent evaluates geolocation proximity, perishability classification windows, and center capacity constraints to produce ranked allocation recommendations. Implemented idempotent queue consumers with dead-letter handling and exponential backoff to ensure no donation is lost under downstream unavailability.",
-    stack: ["Spring Boot", "PostgreSQL", "React", "Chakra UI", "Message Queues", "LLM API"],
-  },
-  {
-    name: "Hand Me Down",
-    icon: "🛍️",
-    link: "https://github.com/riyagmehta",
-    tags: ["May 2023"],
-    desc: "Campus peer-to-peer marketplace using a hybrid rendering strategy: ISR for listing pages with 60-second revalidation windows, SSR for search and filter routes to guarantee freshness on every request, and static generation for category landing pages. MongoDB aggregation pipelines power faceted multi-attribute filtering with compound indexes tuned for listing cardinality and sort performance. Scaled to 500+ concurrent active listings with sub-100ms filter response times.",
-    stack: ["Next.js", "MongoDB", "Tailwind CSS"],
+    status: "team project · 5 contributors",
+    desc: "Co-built a data science platform analyzing Chicago building energy benchmarking data. Trained 5 ML models (ENERGY STAR score prediction, building clustering) revealing similar buildings vary 3–5x in energy consumption — exposing major untapped efficiency potential. Delivered as an interactive dashboard for city planners and building owners.",
+    stack: ["Python", "Streamlit", "scikit-learn"],
+    link: null,
+    annotations: ["Team project · 5 contributors", "5 ML models trained", "Streamlit dashboard"],
   },
 ];
 
@@ -128,13 +153,72 @@ export const education = [
   {
     school: "University of Illinois Chicago",
     degree: "MS Computer Science",
-    dates: "Aug 2024 – May 2026",
-    gpa: "4.0 / 4.0",
+    dates: "2024 – 2026",
+    gpa: "4.0 / 4.0 GPA",
   },
   {
     school: "Dharmsinh Desai University",
     degree: "BTech Information Technology",
-    dates: "Aug 2020 – May 2024",
-    gpa: "8.7 / 10.0",
+    dates: "2020 – 2024",
+    gpa: "8.7 / 10.0 CGPA",
   },
 ];
+
+export const sectionOrder = ["about", "experience", "projects", "skills", "education", "resume", "contact"];
+
+export const sectionMeta = {
+  about: { label: "About", cmd: "whoami" },
+  experience: { label: "Experience", cmd: "cat experience.log" },
+  projects: { label: "Projects", cmd: "ls ~/projects" },
+  skills: { label: "Skills", cmd: "cat skills.json" },
+  education: { label: "Education", cmd: "cat education.log" },
+  resume: { label: "Resume", cmd: "open resume.pdf" },
+  contact: { label: "Contact", cmd: "cat contact.txt" },
+};
+
+export const sectionAnnotations = {
+  about: ["Chicago, IL", "MS CS @ UIC — 4.0 GPA", "Full-stack + AI engineer"],
+  skills: ["20 tools across 5 domains", "Languages → Data & Infra"],
+  education: ["4.0 GPA — MS CS, UIC", "8.7/10 CGPA — BTech IT"],
+  resume: ["PDF preview + download"],
+  contact: ["Open to full-time SDE / AI eng roles", "Chicago, IL"],
+};
+
+export const observeOrder = [
+  "about",
+  ...experience.map((e) => e.id),
+  ...projects.map((p) => p.id),
+  "skills",
+  "education",
+  "resume",
+  "contact",
+];
+
+const titleMap = {
+  about: "About",
+  skills: "Skills",
+  education: "Education",
+  resume: "Resume",
+  contact: "Contact",
+};
+experience.forEach((e) => { titleMap[e.id] = `${e.role} · ${e.company}`; });
+projects.forEach((p) => { titleMap[p.id] = p.name; });
+
+const annotationLookup = { ...sectionAnnotations };
+experience.forEach((e) => { annotationLookup[e.id] = e.annotations; });
+projects.forEach((p) => { annotationLookup[p.id] = p.annotations; });
+
+export function getAnnotations(id) {
+  return annotationLookup[id] || [];
+}
+
+export function getTitle(id) {
+  return titleMap[id] || id;
+}
+
+export function parentSection(id) {
+  if (!id) return "about";
+  if (id.startsWith("exp-")) return "experience";
+  if (id.startsWith("proj-")) return "projects";
+  return id;
+}

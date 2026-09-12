@@ -17,7 +17,8 @@ export const profile = {
 
 export type Project = {
   title: string;
-  description: string;
+  summary: string;
+  highlights: string[];
   tech: string[];
   links: { label: string; href: string }[];
 };
@@ -25,8 +26,13 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Adaptive Course Generation Platform",
-    description:
-      "LLM-generated courses with live streaming and adaptive quizzing. Generation runs on an ARQ job queue with retries, backoff, and crash-safe requeuing, replacing FastAPI background tasks that dropped work on restart. Content streams via a custom SSE reader over fetch (EventSource can't carry auth headers). Retrieval is scored with an eval harness — recall@k, MRR, groundedness — across 25 test cases, and every LLM call logs cost, latency, and cache hit rate under a propagated request ID.",
+    summary: "LLM-powered course generation with live streaming and adaptive quizzing.",
+    highlights: [
+      "Job queue built on ARQ with retries, exponential backoff, and automatic requeue on crash, replacing FastAPI background tasks that dropped work on restart.",
+      "Lesson content streamed through a custom SSE reader over fetch, since EventSource can't carry auth headers or a POST body.",
+      "Retrieval evaluated with a custom harness scoring recall@k, MRR, and groundedness across 25 test cases.",
+      "Every LLM call logged with token count, cost, latency, and cache hit rate under a propagated request ID.",
+    ],
     tech: ["FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "ARQ", "Pinecone", "OpenAI", "Docker"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/AI-Powered-Adaptive-Course-Generation-Platform" },
@@ -35,8 +41,13 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligent Food Donation & Waste Processing System",
-    description:
-      "Models donor-recipient matching as a weighted graph scored on delivery distance and expiry urgency, cutting matching cost 17–46% vs. a greedy baseline. Status updates push over SSE via Spring events, scheduled jobs track approaching expiry, and LLM-generated content runs through server-side validation before render.",
+    summary: "Graph-based matching engine that routes surplus food before it spoils.",
+    highlights: [
+      "Donor-recipient matching modeled as a weighted graph, scored on delivery distance and expiry urgency.",
+      "Cuts matching cost by up to 46% compared to a greedy baseline across varied load.",
+      "Status changes pushed to clients over SSE through Spring application events.",
+      "Scheduled jobs track approaching expiry and archive stale donations automatically.",
+    ],
     tech: ["Java", "Spring Boot", "PostgreSQL", "React", "JGraphT"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/Intelligent-Food-donation-and-waste-processing-system" },
@@ -44,8 +55,13 @@ export const projects: Project[] = [
   },
   {
     title: "Hand Me Down",
-    description:
-      "Campus-only marketplace: registration gated by school email domain, listings ranked by shared major and coursework. bcrypt-hashed passwords, JWTs in httpOnly cookies, and an auth guard on every private route. Test suite runs against a real in-memory MongoDB instead of mocked models. A daily cron job purges stale listings behind a shared-secret auth check.",
+    summary: "Campus-only marketplace with school-verified accounts.",
+    highlights: [
+      "Registration gated by school email domain, with listings ranked by shared major and coursework.",
+      "Passwords hashed with bcrypt; JWTs stored in httpOnly cookies instead of localStorage.",
+      "Test suite runs against a real in-memory MongoDB rather than mocked Mongoose models.",
+      "Daily cron job purges stale listings behind a shared-secret auth check.",
+    ],
     tech: ["Next.js", "MongoDB", "Mongoose", "JWT", "Cloudinary", "Jest"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/hand-me-down" },
@@ -69,9 +85,10 @@ export const experience: ExperienceEntry[] = [
     location: "California, USA (Remote)",
     dates: "Jul 2026 – Present",
     bullets: [
-      "Build agents over multiple LLMs for contract extraction and analysis, combining retrieval, tool calling, and structured outputs.",
-      "Develop MCP plugins connecting agents to enterprise data and application services, defining the tool schemas and execution rules the agents depend on.",
-      "Trace agent failures across real customer scenarios — isolating whether a wrong answer came from retrieval, context, prompting, tool execution, or the model itself.",
+      "Design and ship GenAI solutions for the Customer Success org, including agents that automate contract extraction and analysis across multiple LLM providers.",
+      "Built an internal agent library with reusable retrieval, tool-calling, and structured-output patterns, replacing one-off agent code per use case.",
+      "Develop MCP plugins that expose enterprise data and internal services as callable tools, defining the schemas and execution rules agents run against.",
+      "Debug agent failures on live customer accounts, isolating whether a wrong answer traces back to retrieval, context, prompting, tool execution, or the model itself.",
     ],
   },
   {
@@ -80,11 +97,10 @@ export const experience: ExperienceEntry[] = [
     location: "Ahmedabad, India",
     dates: "Dec 2023 – Aug 2024",
     bullets: [
-      "Worked on a production healthcare application spanning React/Next.js, Rust/Actix, SQLite, and MeiliSearch.",
-      "Integrated MeiliSearch with debounced fuzzy search, cutting search response time by 35% and improving results for incomplete or misspelled queries.",
-      "Built React workflows with Zustand and Jotai, managing state across UI interactions, APIs, and persisted data.",
-      "Implemented IndexedDB-based offline support and worked with CQRS and event sourcing for application state and backend workflows.",
-      "Debugged production issues across frontend, APIs, search, and persistence using Playwright and Postman.",
+      "Owned search on a production healthcare app: integrated MeiliSearch with debounced fuzzy queries, cutting response time 35% and surfacing correct results for misspelled or partial input.",
+      "Built offline-first record access with IndexedDB, syncing local writes through a CQRS and event-sourcing pipeline so the UI never blocked on network state.",
+      "Built the client state layer in Zustand and Jotai, keeping server cache and UI state separate across a Rust/Actix backend and SQLite store.",
+      "Reproduced and fixed production bugs across frontend, API, search, and persistence layers, using Playwright for end-to-end repro and Postman for API-level isolation.",
     ],
   },
   {

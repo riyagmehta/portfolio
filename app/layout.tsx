@@ -25,7 +25,7 @@ const mono = JetBrains_Mono({
 
 const siteUrl =
   process.env.GITHUB_PAGES === "true" ? "https://riyagmehta.github.io/portfolio/" : "https://riyamehta.dev/";
-const title = "Riya Mehta — Software & AI Engineer";
+const title = "Riya Mehta · Software & AI Engineer";
 const description =
   "MS Computer Science student at the University of Illinois Chicago, graduating May 2026. Building agentic AI systems and production software.";
 

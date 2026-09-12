@@ -5,11 +5,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#0A0A0B",
+        canvas: "#0B0A09",
+        surface: "#141210",
+        "surface-hover": "#191713",
         ink: "#EDEAE4",
         muted: "#8A8780",
         accent: "#E8A33D",
-        hairline: "rgba(255,255,255,0.08)",
+        hairline: "rgba(237,234,228,0.08)",
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Georgia", "serif"],

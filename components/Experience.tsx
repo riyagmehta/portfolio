@@ -29,7 +29,7 @@ export function Experience() {
               </div>
 
               <h3 className="mt-2 font-serif text-2xl text-ink sm:text-3xl">
-                {job.role} <span className="text-muted">— {job.company}</span>
+                {job.role} <span className="text-muted">at {job.company}</span>
               </h3>
               <p className="mt-1 font-mono text-xs text-muted">{job.location}</p>
 

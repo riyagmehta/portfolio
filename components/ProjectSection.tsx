@@ -1,97 +1,62 @@
-"use client";
-
-import { AnimatePresence, motion } from "framer-motion";
-import { useId, useState } from "react";
 import type { Project } from "@/lib/data";
 import { FadeIn } from "./FadeIn";
 import { MagneticLink } from "./MagneticLink";
 
 export function ProjectSection({ project, index }: { project: Project; index: number }) {
-  const [expanded, setExpanded] = useState(false);
-  const panelId = useId();
   const order = String(index + 1).padStart(2, "0");
 
   return (
-    <FadeIn as="div" className="border-b border-hairline py-14 first:pt-0 last:border-b-0">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 shrink-0 font-mono text-xs text-muted">{order}</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-serif text-2xl text-ink sm:text-3xl">{project.title}</h3>
-          <p className="mt-3 max-w-2xl text-ink/90">{project.thesis}</p>
+    <FadeIn
+      as="div"
+      className="group relative border-b border-hairline py-16 first:pt-0 last:border-b-0 sm:py-20"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-4 right-0 select-none font-serif text-[8rem] leading-none text-white/[0.03] transition-colors duration-500 group-hover:text-white/[0.05] sm:text-[11rem]"
+      >
+        {order}
+      </span>
 
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {project.tech.map((tech) => (
-              <li
-                key={tech}
-                className="rounded-sm border border-hairline px-2 py-1 font-mono text-[11px] uppercase tracking-wide text-muted"
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
+      <div className="relative grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className="min-w-0">
+          <p className="font-mono text-xs text-accent">{order} / {project.tech[0]}</p>
+          <h3 className="mt-3 max-w-xl font-serif text-3xl leading-[1.05] text-ink sm:text-4xl">
+            {project.title}
+          </h3>
+          <p className="mt-4 max-w-xl text-lg leading-snug text-ink/80">{project.thesis}</p>
 
-          <p className="mt-5 font-mono text-xs text-accent">{project.metrics.join("  ·  ")}</p>
+          <p className="mt-6 max-w-2xl text-[0.95rem] leading-relaxed text-ink/70">{project.description}</p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-2">
             {project.links.map((link) => (
               <MagneticLink
                 key={link.href}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="font-mono text-sm text-ink underline decoration-hairline decoration-1 underline-offset-4 hover:text-accent hover:decoration-accent"
+                className="inline-flex items-center gap-1.5 font-mono text-sm text-ink transition-colors hover:text-accent"
               >
                 {link.label}
+                <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">
+                  ↗
+                </span>
               </MagneticLink>
             ))}
-
-            <button
-              type="button"
-              aria-expanded={expanded}
-              aria-controls={panelId}
-              onClick={() => setExpanded((v) => !v)}
-              className="ml-auto font-mono text-sm text-muted transition-colors hover:text-ink"
-            >
-              {expanded ? "Hide engineering notes" : "Engineering notes"}
-              <span className="ml-2 inline-block transition-transform duration-300" style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)" }}>
-                →
-              </span>
-            </button>
           </div>
+        </div>
 
-          <AnimatePresence initial={false}>
-            {expanded && (
-              <motion.div
-                id={panelId}
-                role="region"
-                aria-label={`${project.title} engineering notes`}
-                key="content"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
+        <div className="lg:pt-1">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Stack</p>
+          <ul className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:items-start lg:gap-2.5">
+            {project.tech.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-sm border border-hairline px-2.5 py-1 font-mono text-[11px] text-ink/70 transition-colors group-hover:border-white/[0.14]"
               >
-                <ul className="mt-8 space-y-5 border-t border-hairline pt-8">
-                  {project.notes.map((note, i) => {
-                    const [lead, ...restParts] = note.split(". ");
-                    const rest = restParts.join(". ");
-                    return (
-                      <li key={i} className="max-w-2xl text-sm leading-relaxed text-ink/85">
-                        {rest ? (
-                          <>
-                            <span className="font-medium text-ink">{lead}.</span> {rest}
-                          </>
-                        ) : (
-                          note
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                {tech}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </FadeIn>

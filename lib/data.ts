@@ -18,10 +18,9 @@ export const profile = {
 export type Project = {
   title: string;
   thesis: string;
+  description: string;
   tech: string[];
-  metrics: string[];
   links: { label: string; href: string }[];
-  notes: string[];
 };
 
 export const projects: Project[] = [
@@ -29,49 +28,33 @@ export const projects: Project[] = [
     title: "Adaptive Course Generation Platform",
     thesis:
       "Turns a learning goal into a personalized course — generated, streamed, quizzed, and self-recalibrating.",
+    description:
+      "Generation runs on a durable ARQ job queue with retries, exponential backoff, and automatic requeuing of orphaned work — replacing an early version on FastAPI background tasks that silently lost progress on every restart. Lesson content streams to the client through a hand-parsed text/event-stream reader over fetch, since native EventSource can't carry auth headers or a POST body; that path surfaced a bug where a client disconnecting mid-stream raised a CancelledError that a bare except Exception couldn't catch, stranding modules mid-generation. Retrieval quality is measured rather than assumed: an evaluation harness scores recall@1/3/5, MRR, groundedness, and refusal rate across 25 test cases, and every LLM call is logged with token counts, computed cost, latency, and cache hit rate under a request ID that threads from the HTTP layer into background jobs.",
     tech: ["FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "ARQ", "Pinecone", "OpenAI", "Docker"],
-    metrics: ["36 tests", "~$0.002 per generated course", "every LLM call instrumented"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/AI-Powered-Adaptive-Course-Generation-Platform" },
       { label: "Live", href: "https://adaptive-course-platform.vercel.app" },
-    ],
-    notes: [
-      "Durable job queue. Generation originally ran on FastAPI BackgroundTasks, which silently lost in-flight work whenever the process restarted. Migrated to ARQ with retries and exponential backoff, idempotent job semantics, a job status table, and automatic requeuing of work orphaned by a crash.",
-      "Streaming under real conditions. Native EventSource can't attach auth headers or send a POST body, so lesson content streams through a hand-parsed text/event-stream reader over fetch. This surfaced a bug where a client disconnecting mid-stream raised CancelledError — which `except Exception` doesn't catch — leaving modules permanently stranded in a generating state.",
-      "Retrieval measured, not assumed. Built an evaluation harness scoring recall@1/3/5, MRR, groundedness, and refusal rate across 25 test cases. It revealed that short modules produced too few chunks for top-k retrieval to meaningfully discriminate — a limitation invisible without measurement.",
-      "Idempotent vector indexing. Serverless Pinecone has no delete-by-metadata-filter, so each module writes to its own namespace, making re-indexing a clean replace rather than an accumulating mess.",
-      "Production observability. Every LLM call logs model, token counts, computed USD cost, latency, and cache hit/miss as structured JSON, with a request ID propagated from HTTP handlers into background jobs.",
     ],
   },
   {
     title: "Intelligent Food Donation & Waste Processing System",
     thesis: "Matches surplus food to recipients by distance and expiry urgency, before it spoils.",
+    description:
+      "Donations and recipients form a weighted graph where edge cost blends delivery distance with time-to-spoil, so the most urgent items route first; benchmarked against a greedy baseline across varied load, this cuts matching cost 17–46%. Geospatial queries surface nearby collection and delivery options rather than scanning the full donation set, Spring events push status changes to clients over SSE, and scheduled jobs sweep for approaching expiry. Generated donation descriptions, food-handling guidance, and donor messages all pass through application-side validation before reaching a user.",
     tech: ["Java", "Spring Boot", "PostgreSQL", "React", "JGraphT"],
-    metrics: ["17–46% lower matching cost vs. greedy baseline"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/Intelligent-Food-donation-and-waste-processing-system" },
-    ],
-    notes: [
-      "Matching as a graph problem. Donations and recipients form a weighted graph where edge cost combines delivery distance with expiry urgency, so time-critical items route first. Benchmarked against a greedy baseline across varied load, cutting matching cost 17–46%.",
-      "Geospatial routing. Location-aware queries surface nearby collection and delivery options rather than scanning the full donation set.",
-      "Event-driven status. Spring events push state changes to clients over SSE, with scheduled jobs sweeping for approaching expiry.",
-      "LLM with guardrails. Generated donation descriptions, food-handling guidance, and donor messages, all validated application-side before surfacing to users.",
     ],
   },
   {
     title: "Hand Me Down",
     thesis: "A marketplace only works if strangers trust each other — so this one is walled to a single campus.",
+    description:
+      "Registration is gated on a school's email domain, so every buyer and seller is verifiably a student at the same institution, and listings surface by shared major and coursework — the thing a senior is offloading is usually what a junior is about to need. Passwords are hashed with bcrypt and JWTs live in httpOnly cookies rather than localStorage, unreachable from injected script, with a guard wrapping every route that reads or mutates private data. The test suite runs against a real in-memory MongoDB instead of mocked Mongoose models, since mocks happily return data that would fail against an actual database, and a daily job archives stale listings behind a shared-secret check on the Authorization header so the endpoint can't be triggered publicly.",
     tech: ["Next.js", "MongoDB", "Mongoose", "JWT", "Cloudinary", "Jest"],
-    metrics: ["Domain-gated registration", "tested against a real in-memory database"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/hand-me-down" },
       { label: "Live", href: "https://hand-me-down-chi.vercel.app" },
-    ],
-    notes: [
-      "Trust as a constraint, not a feature. Registration is gated on a school's email domain, so every buyer and seller is verifiably a student at the same institution. Listings then surface by shared major and coursework, which matters because the thing a senior is offloading is usually the exact thing a junior is about to need.",
-      "Auth decisions that age well. Passwords hashed with bcrypt, JWTs stored in httpOnly cookies rather than localStorage so they're unreachable from injected script, and a guard wrapping every route that reads or mutates private data.",
-      "Tests that exercise the database, not a stub. The suite runs against an in-memory MongoDB rather than mocked Mongoose models — mocks happily return whatever you told them to, including for queries that would fail against a real database.",
-      "Scheduled cleanup with an auth boundary. A daily job archives stale listings, authenticated by a shared secret checked on the Authorization header so the endpoint isn't publicly triggerable.",
     ],
   },
 ];

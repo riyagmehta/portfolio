@@ -5,14 +5,14 @@ import { MagneticLink } from "./MagneticLink";
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-page px-6 pb-20 pt-24 sm:px-8 sm:pt-32 lg:px-10">
+    <section id="top" className="mx-auto max-w-page px-6 pb-24 pt-32 sm:px-8 sm:pt-40 lg:px-10">
       <div className="flex flex-col-reverse gap-10 lg:flex-row lg:items-center lg:gap-16">
         <div className="lg:w-[58%]">
           <FadeIn>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{profile.location}</p>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <h1 className="mt-6 font-serif text-balance text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] text-ink">
+            <h1 className="mt-6 font-serif text-balance text-[clamp(3rem,8vw,6.5rem)] leading-[0.94] tracking-[-0.01em] text-ink">
               {profile.name}
             </h1>
           </FadeIn>

@@ -14,6 +14,8 @@
   body {
     background-color: theme("colors.canvas");
     color: theme("colors.ink");
+    background-image: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(255, 255, 255, 0.05), transparent);
+    background-repeat: no-repeat;
   }
 
   ::selection {

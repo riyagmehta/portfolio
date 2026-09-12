@@ -23,7 +23,8 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://riyamehta.dev";
+const siteUrl =
+  process.env.GITHUB_PAGES === "true" ? "https://riyagmehta.github.io/portfolio/" : "https://riyamehta.dev/";
 const title = "Riya Mehta — Software & AI Engineer";
 const description =
   "MS Computer Science student at the University of Illinois Chicago, graduating May 2026. Building agentic AI systems and production software.";
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Riya Mehta",
     images: [
       {
-        url: "/riya.jpg",
+        url: "riya.jpg",
         width: 1254,
         height: 1254,
         alt: "Riya Mehta",
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/riya.jpg"],
+    images: ["riya.jpg"],
   },
 };
 

@@ -1,3 +1,7 @@
+export const basePath = process.env.GITHUB_PAGES === "true" ? "/portfolio" : "";
+
+export const withBasePath = (path: string) => `${basePath}${path}`;
+
 export const profile = {
   name: "Riya Mehta",
   role: "Software & AI Engineer",
@@ -7,7 +11,7 @@ export const profile = {
     github: "https://github.com/riyagmehta",
     linkedin: "https://www.linkedin.com/in/riya-mehta-515595200",
     email: "mriya842@gmail.com",
-    resume: "/riya-mehta-resume.pdf",
+    resume: withBasePath("/riya-mehta-resume.pdf"),
   },
 };
 

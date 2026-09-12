@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { profile } from "@/lib/data";
+import { profile, withBasePath } from "@/lib/data";
 import { FadeIn } from "./FadeIn";
 import { MagneticLink } from "./MagneticLink";
 
@@ -61,7 +61,7 @@ export function Hero() {
         <FadeIn delay={0.1} className="lg:w-[38%]">
           <div className="overflow-hidden rounded-lg border border-hairline">
             <Image
-              src="/riya.jpg"
+              src={withBasePath("/riya.jpg")}
               alt="Riya Mehta"
               width={640}
               height={640}

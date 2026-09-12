@@ -17,7 +17,6 @@ export const profile = {
 
 export type Project = {
   title: string;
-  thesis: string;
   description: string;
   tech: string[];
   links: { label: string; href: string }[];
@@ -26,10 +25,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Adaptive Course Generation Platform",
-    thesis:
-      "Turns a learning goal into a personalized course — generated, streamed, quizzed, and self-recalibrating.",
     description:
-      "Generation runs on a durable ARQ job queue with retries, exponential backoff, and automatic requeuing of orphaned work — replacing an early version on FastAPI background tasks that silently lost progress on every restart. Lesson content streams to the client through a hand-parsed text/event-stream reader over fetch, since native EventSource can't carry auth headers or a POST body; that path surfaced a bug where a client disconnecting mid-stream raised a CancelledError that a bare except Exception couldn't catch, stranding modules mid-generation. Retrieval quality is measured rather than assumed: an evaluation harness scores recall@1/3/5, MRR, groundedness, and refusal rate across 25 test cases, and every LLM call is logged with token counts, computed cost, latency, and cache hit rate under a request ID that threads from the HTTP layer into background jobs.",
+      "LLM-generated courses with live streaming and adaptive quizzing. Generation runs on an ARQ job queue with retries, backoff, and crash-safe requeuing, replacing FastAPI background tasks that dropped work on restart. Content streams via a custom SSE reader over fetch (EventSource can't carry auth headers). Retrieval is scored with an eval harness — recall@k, MRR, groundedness — across 25 test cases, and every LLM call logs cost, latency, and cache hit rate under a propagated request ID.",
     tech: ["FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "ARQ", "Pinecone", "OpenAI", "Docker"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/AI-Powered-Adaptive-Course-Generation-Platform" },
@@ -38,9 +35,8 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligent Food Donation & Waste Processing System",
-    thesis: "Matches surplus food to recipients by distance and expiry urgency, before it spoils.",
     description:
-      "Donations and recipients form a weighted graph where edge cost blends delivery distance with time-to-spoil, so the most urgent items route first; benchmarked against a greedy baseline across varied load, this cuts matching cost 17–46%. Geospatial queries surface nearby collection and delivery options rather than scanning the full donation set, Spring events push status changes to clients over SSE, and scheduled jobs sweep for approaching expiry. Generated donation descriptions, food-handling guidance, and donor messages all pass through application-side validation before reaching a user.",
+      "Models donor-recipient matching as a weighted graph scored on delivery distance and expiry urgency, cutting matching cost 17–46% vs. a greedy baseline. Status updates push over SSE via Spring events, scheduled jobs track approaching expiry, and LLM-generated content runs through server-side validation before render.",
     tech: ["Java", "Spring Boot", "PostgreSQL", "React", "JGraphT"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/Intelligent-Food-donation-and-waste-processing-system" },
@@ -48,9 +44,8 @@ export const projects: Project[] = [
   },
   {
     title: "Hand Me Down",
-    thesis: "A marketplace only works if strangers trust each other — so this one is walled to a single campus.",
     description:
-      "Registration is gated on a school's email domain, so every buyer and seller is verifiably a student at the same institution, and listings surface by shared major and coursework — the thing a senior is offloading is usually what a junior is about to need. Passwords are hashed with bcrypt and JWTs live in httpOnly cookies rather than localStorage, unreachable from injected script, with a guard wrapping every route that reads or mutates private data. The test suite runs against a real in-memory MongoDB instead of mocked Mongoose models, since mocks happily return data that would fail against an actual database, and a daily job archives stale listings behind a shared-secret check on the Authorization header so the endpoint can't be triggered publicly.",
+      "Campus-only marketplace: registration gated by school email domain, listings ranked by shared major and coursework. bcrypt-hashed passwords, JWTs in httpOnly cookies, and an auth guard on every private route. Test suite runs against a real in-memory MongoDB instead of mocked models. A daily cron job purges stale listings behind a shared-secret auth check.",
     tech: ["Next.js", "MongoDB", "Mongoose", "JWT", "Cloudinary", "Jest"],
     links: [
       { label: "GitHub", href: "https://github.com/riyagmehta/hand-me-down" },

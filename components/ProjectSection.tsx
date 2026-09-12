@@ -23,9 +23,8 @@ export function ProjectSection({ project, index }: { project: Project; index: nu
           <h3 className="mt-3 max-w-xl font-serif text-3xl leading-[1.05] text-ink sm:text-4xl">
             {project.title}
           </h3>
-          <p className="mt-4 max-w-xl text-lg leading-snug text-ink/80">{project.thesis}</p>
 
-          <p className="mt-6 max-w-2xl text-[0.95rem] leading-relaxed text-ink/70">{project.description}</p>
+          <p className="mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-ink/70">{project.description}</p>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-2">
             {project.links.map((link) => (

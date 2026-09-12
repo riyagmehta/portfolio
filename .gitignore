@@ -23,3 +23,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# latex build artifacts
+resume/*.aux
+resume/*.log
+resume/*.out
+resume/*.pdf

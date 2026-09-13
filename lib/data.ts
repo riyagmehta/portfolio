@@ -39,7 +39,7 @@ export const projects: Project[] = [
   },
   {
     title: "Adaptive Course Generation Platform",
-    summary: "LLM-powered course generation with live streaming and adaptive quizzing.",
+    summary: "Course generation platform with a crash-resistant job queue and a custom evaluation harness for retrieval quality.",
     highlights: [
       "Job queue built on ARQ with retries, exponential backoff, and automatic requeue on crash, ensuring failed jobs survive a restart.",
       "Lesson content streamed through a custom SSE reader over fetch, since EventSource can't carry auth headers or a POST body.",
@@ -54,10 +54,11 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligent Food Donation & Waste Processing System",
-    summary: "Graph-based matching engine that routes surplus food before it spoils.",
+    summary:
+      "Donation allocation system that matches donors to recipients using the Hungarian algorithm, weighted by delivery distance and expiry urgency.",
     highlights: [
-      "Donor-recipient matching modeled as a weighted graph, scored on delivery distance and expiry urgency.",
-      "Matching algorithm reduces cost by up to 46% across varied load conditions.",
+      "Solves allocation with the Hungarian algorithm, an optimal bipartite matching method for pairing donors to recipients.",
+      "Matching algorithm reduces cost by 17 to 46 percent across varied load conditions.",
       "Status changes pushed to clients over SSE through Spring application events.",
       "Scheduled jobs track approaching expiry and archive stale donations automatically.",
     ],
@@ -123,8 +124,9 @@ export const experience: ExperienceEntry[] = [
     location: "India (Remote)",
     dates: "Jul 2023 – Aug 2023",
     bullets: [
-      "Built multi-step order and user management flows across React and Node/Express, where state had to stay consistent as requests moved between client, API, and database.",
-      "Pushed validation server-side so malformed requests fail before reaching persistent state.",
+      "Designed REST APIs for order creation, status updates, and user management, and wired the React frontend to consume them for a live e-commerce order flow.",
+      "Built a multi-step order status pipeline (placed, processing, shipped, delivered), keeping order state in sync between the client and the database at each stage.",
+      "Traced and fixed bugs across the full stack, from React components to Express route handlers to the database layer, adapting the implementation as product requirements changed.",
     ],
   },
 ];

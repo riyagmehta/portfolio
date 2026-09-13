@@ -25,10 +25,23 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Distributed API Gateway",
+    summary:
+      "A distributed API gateway providing rate limiting, circuit breaking, and observability for backend services under concurrent load.",
+    highlights: [
+      "Implements an atomic Postgres-based token bucket rate limiter, verified through a concurrency test that fires simultaneous requests across multiple gateway instances and confirms the shared limit holds exactly, including a negative-control test demonstrating where a naive implementation lets excess requests through.",
+      "Circuit breaker with closed, open, and half-open states isolates failing downstream services and recovers automatically once health is restored.",
+      "Exposes Prometheus-format metrics per instance, visualized on a live dashboard covering request rates, latency percentiles, and breaker state.",
+      "Deployed as a multi-container stack on Oracle Cloud Infrastructure, with gateway instances behind an nginx load balancer backed by a shared Postgres instance.",
+    ],
+    tech: ["Node.js", "TypeScript", "PostgreSQL", "Docker", "nginx", "Oracle Cloud Infrastructure"],
+    links: [{ label: "GitHub", href: "https://github.com/riyagmehta/distributed-api-gateway" }],
+  },
+  {
     title: "Adaptive Course Generation Platform",
     summary: "LLM-powered course generation with live streaming and adaptive quizzing.",
     highlights: [
-      "Job queue built on ARQ with retries, exponential backoff, and automatic requeue on crash, replacing FastAPI background tasks that dropped work on restart.",
+      "Job queue built on ARQ with retries, exponential backoff, and automatic requeue on crash, ensuring failed jobs survive a restart.",
       "Lesson content streamed through a custom SSE reader over fetch, since EventSource can't carry auth headers or a POST body.",
       "Retrieval evaluated with a custom harness scoring recall@k, MRR, and groundedness across 25 test cases.",
       "Every LLM call logged with token count, cost, latency, and cache hit rate under a propagated request ID.",
@@ -44,7 +57,7 @@ export const projects: Project[] = [
     summary: "Graph-based matching engine that routes surplus food before it spoils.",
     highlights: [
       "Donor-recipient matching modeled as a weighted graph, scored on delivery distance and expiry urgency.",
-      "Cuts matching cost by up to 46% compared to a greedy baseline across varied load.",
+      "Matching algorithm reduces cost by up to 46% across varied load conditions.",
       "Status changes pushed to clients over SSE through Spring application events.",
       "Scheduled jobs track approaching expiry and archive stale donations automatically.",
     ],
@@ -55,12 +68,13 @@ export const projects: Project[] = [
   },
   {
     title: "Hand Me Down",
-    summary: "Campus-only marketplace with school-verified accounts.",
+    summary:
+      "A campus marketplace connecting graduating seniors with incoming students through major and coursework based matching.",
     highlights: [
-      "Registration gated by school email domain, with listings ranked by shared major and coursework.",
-      "Passwords hashed with bcrypt; JWTs stored in httpOnly cookies instead of localStorage.",
-      "Test suite runs against a real in-memory MongoDB rather than mocked Mongoose models.",
-      "Daily cron job purges stale listings behind a shared-secret auth check.",
+      "Ranks listings against each student's major and course history, surfacing a graduating senior's textbooks and equipment to the incoming students most likely to need them.",
+      "Registration is restricted to verified university email domains, keeping the marketplace scoped to enrolled students.",
+      "Purchases on limited-availability listings run through a concurrency-safe transaction path, ensuring only one buyer can claim a one-off item even under simultaneous requests.",
+      "Listings are semester-aware: move-out listings auto-expire at the end of the term, and sellers can bundle multiple items into a single listing.",
     ],
     tech: ["Next.js", "MongoDB", "Mongoose", "JWT", "Cloudinary", "Jest"],
     links: [
@@ -110,7 +124,7 @@ export const experience: ExperienceEntry[] = [
     dates: "Jul 2023 – Aug 2023",
     bullets: [
       "Built multi-step order and user management flows across React and Node/Express, where state had to stay consistent as requests moved between client, API, and database.",
-      "Pushed validation server-side so malformed requests failed before reaching persistent state rather than after.",
+      "Pushed validation server-side so malformed requests fail before reaching persistent state.",
     ],
   },
 ];

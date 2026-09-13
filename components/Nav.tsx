@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { profile } from "@/lib/data";
 
@@ -14,6 +14,15 @@ const links = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
@@ -78,15 +87,79 @@ export function Nav() {
           ))}
         </ul>
 
-        <a
-          href={profile.links.resume}
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-sm border border-hairline px-3 py-1.5 font-mono text-xs text-ink transition-colors hover:border-accent hover:text-accent"
-        >
-          Resume
-        </a>
+        <div className="flex items-center gap-4 sm:gap-0">
+          <a
+            href={profile.links.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden rounded-sm border border-hairline px-3 py-1.5 font-mono text-xs text-ink transition-colors hover:border-accent hover:text-accent sm:inline-block"
+          >
+            Resume
+          </a>
+
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 sm:hidden"
+          >
+            <motion.span
+              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 4 : 0 }}
+              className="h-px w-5 bg-ink"
+            />
+            <motion.span
+              animate={{ opacity: menuOpen ? 0 : 1 }}
+              className="h-px w-5 bg-ink"
+            />
+            <motion.span
+              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -4 : 0 }}
+              className="h-px w-5 bg-ink"
+            />
+          </button>
+        </div>
       </nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="border-t border-hairline bg-canvas px-6 pb-8 pt-4 sm:hidden"
+          >
+            <ul className="flex flex-col gap-1 font-mono text-sm uppercase tracking-wide">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block py-3 transition-colors ${
+                      active === link.href ? "text-accent" : "text-ink hover:text-accent"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={profile.links.resume}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="block py-3 text-ink transition-colors hover:text-accent"
+                >
+                  Resume
+                </a>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
